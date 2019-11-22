@@ -1,14 +1,25 @@
+" URL: http://vim.wikia.com/wiki/Example_vimrc
+" Authors: http://vim.wikia.com/wiki/Vim_on_Freenode
+" Description: A minimal, but feature rich, example .vimrc. If you are a
+"              newbie, basing your first .vimrc on this file is a good choice.
+"              If you're a more advanced user, building your own .vimrc based
+"              on this file is still a good idea.
+"              NOTE to open one of the collapsed stuff, go to  +-- before  xx lines and then press h or l
 
-"------------------------------------------------------------
-" Features {{{1
-"
-" These options and commands enable some very useful features in Vim, that
-" no user should have to live without.
+"Python
 
-" Set 'nocompatible' to ward off unexpected things that your distro might
-" have made, as well as sanely reset options when re-sourcing .vimrc
+set showmatch
+let python_highlight_all=1
+syntax on
+
 " Silver search
 "
+"
+"Auto save
+let g:auto_save = 1
+let g:auto_save_in_insert_mode = 1
+let g:auto_save_silent = 0
+
 let g:ag_working_path_mode="r"
 
 set nocompatible
@@ -78,7 +89,8 @@ let g:web_search_command = "firefox"
 let g:web_search_engine = "google"
 "------------------------------------------------------------
 " Usability options {{{1
-"
+set clipboard=unnamed
+
 " These are options that users frequently set in their .vimrc. Some of them
 " change Vim's behaviour in ways which deviate from the true Vi way, but
 " which are considered to add usability. Which, if any, of these options to
@@ -135,6 +147,22 @@ set notimeout ttimeout ttimeoutlen=200
 " Use <F11> to toggle between 'paste' and 'nopaste'
 set pastetoggle=<C-u>
 
+map <C-c> "+y
+
+map <C-p> "+p
+
+
+"snippets
+"
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
 
 "------------------------------------------------------------
 " Indentation options {{{1
@@ -153,6 +181,20 @@ set expandtab
 "set tabstop=2
 
 
+"multi line editing
+"
+let g:multi_cursor_use_default_mapping=0
+
+" Default mapping
+let g:multi_cursor_start_word_key      = '<C-n>'
+let g:multi_cursor_select_all_word_key = '<A-n>'
+let g:multi_cursor_start_key           = 'g<C-n>'
+let g:multi_cursor_select_all_key      = 'g<A-n>'
+let g:multi_cursor_next_key            = '<C-n>'
+let g:multi_cursor_prev_key            = '<C-p>'
+let g:multi_cursor_skip_key            = '<C-x>'
+let g:multi_cursor_quit_key            = '<Esc>'
+
 "------------------------------------------------------------
 " Mappings {{{1
 "
@@ -166,7 +208,7 @@ map Y y$
 " next search
 nnoremap <C-L> :nohl<CR><C-L>
 
-
+set autoread
 "------------------------------------------------------------
 :nnoremap mm :tabnext <Return>
 :nnoremap MM :tabNext <Return>
@@ -203,6 +245,26 @@ nnoremap <silent> <expr> <Leader><Leader> (expand('%') =~ 'NERD_tree' ? "\<c-w>\
 "
 nnoremap <silent> <C-z> :FZF<CR>
 
+"multiline editing
+"
+
+let g:multi_cursor_use_default_mapping=0
+"
+let g:airline#extensions#clock#format = '%c'
+
+" Default mapping
+let g:multi_cursor_start_word_key      = '<C-n>'
+let g:multi_cursor_select_all_word_key = '<A-n>'
+let g:multi_cursor_start_key           = 'g<C-n>'
+let g:multi_cursor_select_all_key      = 'g<A-n>'
+let g:multi_cursor_next_key            = '<C-n>'
+let g:multi_cursor_prev_key            = '<C-p>'
+let g:multi_cursor_skip_key            = '<C-x>'
+let g:multi_cursor_quit_key            = '<Esc>'
+
+
+let g:neocomplete#enable_at_startup = 1
+
 set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -220,5 +282,14 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'jvanja/vim-bootstrap4-snippets'
 Plugin 'rking/ag.vim'
 Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'shougo/neocomplete.vim'
+Plugin '907th/vim-auto-save'
+"Plugin 'tmhedberg/simpylfold'
+Plugin 'vim-syntastic/syntastic'
+Plugin 'nvie/vim-flake8'
+Plugin 'enricobacis/vim-airline-clock'
 call vundle#end()
 filetype plugin indent on
