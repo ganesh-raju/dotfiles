@@ -291,5 +291,10 @@ Plugin '907th/vim-auto-save'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'nvie/vim-flake8'
 Plugin 'enricobacis/vim-airline-clock'
+Plugin 'reedes/vim-lexical'
+Plugin 'zoubin/vim-gotofile'
+Plugin 'justinj/vim-react-snippets'
+Plugin 'amadeus/vim-jsx'
+Plugin 'tellijo/vim-react-native-snippets'
 call vundle#end()
 filetype plugin indent on
